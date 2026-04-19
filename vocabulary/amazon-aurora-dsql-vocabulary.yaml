@@ -1,0 +1,146 @@
+vocabulary:
+  label: Amazon Aurora DSQL Vocabulary
+  description: Core terms, actions, and workflows for the Amazon Aurora DSQL distributed SQL database service.
+  tags:
+    - Amazon Aurora DSQL
+    - Distributed SQL
+    - PostgreSQL
+    - Serverless
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+resources:
+  - name: Cluster
+    description: A distributed SQL database cluster in Amazon Aurora DSQL that provides a serverless, PostgreSQL-compatible database endpoint.
+    properties:
+      - identifier
+      - arn
+      - status
+      - creationTime
+      - deletionProtectionEnabled
+      - witnessRegion
+      - linkedClusterArns
+    related:
+      - MultiRegionCluster
+      - ClusterEndpoint
+
+  - name: ClusterEndpoint
+    description: The database connection endpoint for an Aurora DSQL cluster, providing hostname and port for PostgreSQL connections.
+    properties:
+      - identifier
+      - endpoint
+      - port
+    related:
+      - Cluster
+
+  - name: MultiRegionCluster
+    description: A set of Aurora DSQL clusters linked across multiple AWS regions for global distribution and high availability.
+    properties:
+      - linkedClusterArns
+      - witnessRegion
+      - linkedRegionList
+    related:
+      - Cluster
+
+actions:
+  - name: CreateCluster
+    description: Create a new Aurora DSQL distributed SQL cluster.
+    resource: Cluster
+    method: POST
+    path: /cluster
+
+  - name: GetCluster
+    description: Get the properties and status of a specific cluster.
+    resource: Cluster
+    method: GET
+    path: /cluster/{identifier}
+
+  - name: UpdateCluster
+    description: Update the configuration of a cluster.
+    resource: Cluster
+    method: PUT
+    path: /cluster/{identifier}
+
+  - name: DeleteCluster
+    description: Delete a cluster from Aurora DSQL.
+    resource: Cluster
+    method: DELETE
+    path: /cluster/{identifier}
+
+  - name: ListClusters
+    description: List all Aurora DSQL clusters in the account.
+    resource: Cluster
+    method: GET
+    path: /clusters
+
+  - name: GetClusterEndpoint
+    description: Get the database connection endpoint for a cluster.
+    resource: ClusterEndpoint
+    method: GET
+    path: /cluster/{identifier}/endpoint
+
+  - name: CreateMultiRegionClusters
+    description: Create linked clusters across multiple AWS regions.
+    resource: MultiRegionCluster
+    method: POST
+    path: /multi-region-clusters
+
+  - name: DeleteMultiRegionClusters
+    description: Delete a set of linked multi-region clusters.
+    resource: MultiRegionCluster
+    method: DELETE
+    path: /multi-region-clusters
+
+  - name: ListTagsForResource
+    description: List tags associated with a cluster resource.
+    resource: Cluster
+    method: GET
+    path: /tags/{resourceArn}
+
+  - name: TagResource
+    description: Add tags to a cluster resource.
+    resource: Cluster
+    method: POST
+    path: /tags/{resourceArn}
+
+  - name: UntagResource
+    description: Remove tags from a cluster resource.
+    resource: Cluster
+    method: DELETE
+    path: /tags/{resourceArn}
+
+workflows:
+  - name: DeployDistributedDatabase
+    description: End-to-end workflow for deploying and connecting to an Aurora DSQL cluster.
+    steps:
+      - action: CreateCluster
+        description: Create the Aurora DSQL cluster
+      - action: GetCluster
+        description: Wait for the cluster to reach ACTIVE status
+      - action: GetClusterEndpoint
+        description: Get the connection endpoint for the cluster
+      - action: TagResource
+        description: Tag the cluster for cost tracking and organization
+
+personas:
+  - name: Database Administrator
+    description: Manages Aurora DSQL clusters and configures database properties for transactional workloads.
+    actions:
+      - CreateCluster
+      - GetCluster
+      - UpdateCluster
+      - DeleteCluster
+      - ListClusters
+      - GetClusterEndpoint
+      - TagResource
+      - UntagResource
+
+  - name: Cloud Architect
+    description: Designs multi-region distributed SQL architectures for global, high-availability applications.
+    actions:
+      - CreateMultiRegionClusters
+      - DeleteMultiRegionClusters
+      - ListClusters
+      - GetCluster
+      - GetClusterEndpoint

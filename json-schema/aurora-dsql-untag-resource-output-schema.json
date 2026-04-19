@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-untag-resource-output-schema.json",
+  "title": "UntagResourceOutput",
+  "description": "JSON Schema for the Amazon Aurora DSQL UntagResourceOutput object.",
+  "type": "object",
+  "properties": {}
+}

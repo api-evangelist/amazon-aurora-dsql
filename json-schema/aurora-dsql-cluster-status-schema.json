@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-cluster-status-schema.json",
+  "title": "ClusterStatus",
+  "description": "JSON Schema for the Amazon Aurora DSQL ClusterStatus object.",
+  "type": "object",
+  "properties": {}
+}

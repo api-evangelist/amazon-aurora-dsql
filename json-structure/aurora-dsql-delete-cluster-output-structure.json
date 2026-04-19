@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-structure/aurora-dsql-delete-cluster-output-structure.json",
+  "title": "DeleteClusterOutput",
+  "description": "JSON Structure for the Amazon Aurora DSQL DeleteClusterOutput object.",
+  "type": "object",
+  "properties": {}
+}

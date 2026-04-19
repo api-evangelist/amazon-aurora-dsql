@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-create-multi-region-clusters-input-schema.json",
+  "title": "CreateMultiRegionClustersInput Example",
+  "description": "An example of the Amazon Aurora DSQL CreateMultiRegionClustersInput object."
+}

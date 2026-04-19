@@ -1,0 +1,136 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Distributed SQL Management Workflow
+  description: Workflow capability for creating and managing distributed SQL clusters with Amazon Aurora DSQL including multi-region configurations.
+  tags:
+    - Amazon Aurora DSQL
+    - Distributed SQL
+    - PostgreSQL
+    - Serverless
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+imports:
+  - namespace: dsql
+    from: shared/aurora-dsql-api.yaml
+
+capability:
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: distributed-sql-rest
+      resources:
+        - path: /v1/clusters
+          name: clusters
+          description: Distributed SQL cluster management
+          operations:
+            - method: POST
+              name: create-cluster
+              description: Create a new cluster
+              call: "dsql.create-cluster"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-clusters
+              description: List all clusters
+              call: "dsql.list-clusters"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: distributed-sql-mcp
+      transport: http
+      tools:
+        - name: list-clusters
+          description: List all Aurora DSQL clusters to understand available databases.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.list-clusters"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-cluster
+          description: Create a new Aurora DSQL cluster for distributed SQL workloads.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "dsql.create-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-cluster
+          description: Get the current status and configuration of an Aurora DSQL cluster.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.get-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-cluster-endpoint
+          description: Get the PostgreSQL-compatible connection endpoint for an Aurora DSQL cluster.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.get-cluster-endpoint"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: update-cluster
+          description: Update the configuration of an Aurora DSQL cluster.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "dsql.update-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-multi-region-clusters
+          description: Create linked Aurora DSQL clusters across multiple AWS regions for global distribution.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "dsql.create-multi-region-clusters"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-cluster
+          description: Delete an Aurora DSQL cluster when it is no longer needed.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "dsql.delete-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+personas:
+  - name: Database Administrator
+    description: Manages Aurora DSQL clusters for transactional workloads and configures cluster properties.
+    tools:
+      - list-clusters
+      - create-cluster
+      - get-cluster
+      - get-cluster-endpoint
+      - update-cluster
+      - delete-cluster
+
+  - name: Cloud Architect
+    description: Designs and deploys multi-region distributed SQL architectures for global applications.
+    tools:
+      - list-clusters
+      - create-multi-region-clusters
+      - get-cluster
+      - get-cluster-endpoint

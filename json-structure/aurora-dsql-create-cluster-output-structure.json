@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-structure/aurora-dsql-create-cluster-output-structure.json",
+  "title": "CreateClusterOutput",
+  "description": "JSON Structure for the Amazon Aurora DSQL CreateClusterOutput object.",
+  "type": "object",
+  "properties": {}
+}

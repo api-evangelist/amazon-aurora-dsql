@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-list-tags-for-resource-output-schema.json",
+  "title": "ListTagsForResourceOutput",
+  "description": "JSON Schema for the Amazon Aurora DSQL ListTagsForResourceOutput object.",
+  "type": "object",
+  "properties": {}
+}

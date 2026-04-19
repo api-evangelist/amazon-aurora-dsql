@@ -1,0 +1,92 @@
+rules:
+  aurora-dsql-operation-id-camel-case:
+    description: All operationIds must be camelCase
+    message: "{{property}} must be camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  aurora-dsql-summary-prefix:
+    description: All operation summaries must start with Amazon Aurora DSQL
+    message: Summary must start with Amazon Aurora DSQL
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Amazon Aurora DSQL"
+
+  aurora-dsql-has-tags:
+    description: All operations must have tags
+    message: Operation must have at least one tag
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  aurora-dsql-response-200:
+    description: All operations must have a 200 response
+    message: Operation must define a 200 response
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  aurora-dsql-cluster-status-enum:
+    description: ClusterStatus must use valid enum values
+    message: ClusterStatus must be CREATING, ACTIVE, IDLE, UPDATING, DELETING, DELETED, or FAILED
+    severity: error
+    given: "$.components.schemas.ClusterStatus"
+    then:
+      field: enum
+      function: truthy
+
+  aurora-dsql-security-sigv4:
+    description: API must use sigv4 security scheme
+    message: Security must include sigv4
+    severity: error
+    given: "$.security[*]"
+    then:
+      field: sigv4
+      function: defined
+
+  aurora-dsql-server-url-fixed:
+    description: Server URL must be fixed without variables
+    message: Server URL must not use variables
+    severity: warn
+    given: "$.servers[*]"
+    then:
+      field: variables
+      function: falsy
+
+  aurora-dsql-example-microcks-default:
+    description: All examples must have x-microcks-default set to true
+    message: Example must have x-microcks-default true
+    severity: warn
+    given: "$.paths[*][*].responses[*].content[*].examples.default"
+    then:
+      field: x-microcks-default
+      function: truthy
+
+  aurora-dsql-multi-region-linked-list-required:
+    description: CreateMultiRegionClustersInput must require linkedRegionList
+    message: CreateMultiRegionClustersInput must have linkedRegionList as required
+    severity: error
+    given: "$.components.schemas.CreateMultiRegionClustersInput"
+    then:
+      field: required
+      function: truthy
+
+  aurora-dsql-cluster-identifier-string:
+    description: ClusterSummary identifier must be string type
+    message: identifier must be a string
+    severity: error
+    given: "$.components.schemas.ClusterSummary.properties.identifier"
+    then:
+      field: type
+      function: truthy

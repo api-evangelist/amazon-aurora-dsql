@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "dsql": "https://aws.amazon.com/rds/aurora/dsql/",
+    "Cluster": "dsql:Cluster",
+    "ClusterIdentifier": "dsql:clusterIdentifier",
+    "ClusterArn": "dsql:clusterArn",
+    "ClusterStatus": "dsql:ClusterStatus"
+  }
+}

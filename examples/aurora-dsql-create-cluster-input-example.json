@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-create-cluster-input-schema.json",
+  "title": "CreateClusterInput Example",
+  "description": "An example of the Amazon Aurora DSQL CreateClusterInput object."
+}

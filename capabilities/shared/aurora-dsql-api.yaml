@@ -1,0 +1,183 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Amazon Aurora DSQL API
+  description: Shared capability definition for the Amazon Aurora DSQL API covering cluster management and multi-region configurations.
+  tags:
+    - Amazon Aurora DSQL
+    - Distributed SQL
+    - PostgreSQL
+    - Serverless
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - type: http
+      namespace: dsql
+      baseUri: https://dsql.us-east-1.amazonaws.com
+      description: Amazon Aurora DSQL for distributed serverless SQL databases.
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{AWS_ACCESS_KEY_ID}}"
+        placement: header
+      resources:
+        - name: clusters
+          path: /clusters
+          description: List Aurora DSQL clusters.
+          operations:
+            - name: list-clusters
+              method: GET
+              description: Lists all clusters.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: cluster-create
+          path: /cluster
+          description: Create an Aurora DSQL cluster.
+          operations:
+            - name: create-cluster
+              method: POST
+              description: Creates a new cluster.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: cluster
+          path: /cluster/{identifier}
+          description: Manage a specific cluster.
+          operations:
+            - name: get-cluster
+              method: GET
+              description: Gets cluster properties.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-cluster
+              method: PUT
+              description: Updates a cluster.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-cluster
+              method: DELETE
+              description: Deletes a cluster.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: cluster-endpoint
+          path: /cluster/{identifier}/endpoint
+          description: Get cluster connection endpoint.
+          operations:
+            - name: get-cluster-endpoint
+              method: GET
+              description: Gets the cluster database endpoint.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: multi-region-clusters
+          path: /multi-region-clusters
+          description: Manage multi-region cluster configurations.
+          operations:
+            - name: create-multi-region-clusters
+              method: POST
+              description: Creates multi-region clusters.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-multi-region-clusters
+              method: DELETE
+              description: Deletes multi-region clusters.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: dsql-rest
+      resources:
+        - path: /v1/clusters
+          name: clusters
+          description: Aurora DSQL clusters
+          operations:
+            - method: GET
+              name: list-clusters
+              description: List clusters
+              call: "dsql.list-clusters"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: dsql-mcp
+      transport: http
+      tools:
+        - name: list-clusters
+          description: List all Aurora DSQL clusters in the account.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.list-clusters"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-cluster
+          description: Create a new Aurora DSQL distributed SQL cluster.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "dsql.create-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-cluster
+          description: Get the properties and status of an Aurora DSQL cluster.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.get-cluster"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-cluster-endpoint
+          description: Get the database connection endpoint for an Aurora DSQL cluster.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "dsql.get-cluster-endpoint"
+          outputParameters:
+            - type: object
+              mapping: "$."

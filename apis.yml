@@ -1,16 +1,104 @@
 aid: amazon-aurora-dsql
-name: Amazon Aurora Dsql
+name: Amazon Aurora DSQL
 description: >-
-  Amazon Aurora Dsql provides API capabilities.
+  Amazon Aurora DSQL is a distributed SQL database service optimized for transactional workloads. It provides a serverless, fully managed PostgreSQL-compatible database with built-in high availability, scalability, and global distribution capabilities.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags: []
+tags:
+  - Amazon Aurora DSQL
+  - Distributed SQL
+  - PostgreSQL
+  - Serverless
+  - AWS
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-16'
+modified: '2026-04-19'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: amazon-aurora-dsql:amazon-aurora-dsql-api
+    name: Amazon Aurora DSQL API
+    description: >-
+      REST management API for Amazon Aurora DSQL covering cluster creation, configuration, multi-region deployments, and connection endpoint management.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/getting-started.html
+    baseURL: https://dsql.us-east-1.amazonaws.com
+    tags:
+      - Amazon Aurora DSQL
+      - Distributed SQL
+      - PostgreSQL
+      - Serverless
+      - AWS
+    properties:
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/openapi/amazon-aurora-dsql-openapi.yml
+      - type: SpectralRules
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/rules/amazon-aurora-dsql-spectral-rules.yml
+      - type: NaftikoCapability
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/capabilities/shared/aurora-dsql-api.yaml
+      - type: NaftikoCapability
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/capabilities/distributed-sql-management.yaml
+      - type: Vocabulary
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/vocabulary/amazon-aurora-dsql-vocabulary.yaml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-cluster-summary-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-schema/aurora-dsql-create-cluster-input-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-structure/aurora-dsql-cluster-summary-structure.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-structure/aurora-dsql-get-cluster-output-structure.json
+      - type: JSONLD
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/json-ld/amazon-aurora-dsql-context.jsonld
+      - type: Example
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/examples/aurora-dsql-create-cluster-input-example.json
+      - type: Example
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/examples/aurora-dsql-get-cluster-output-example.json
+common:
+  - type: Features
+    data:
+      - Serverless PostgreSQL-compatible distributed SQL database
+      - Automatic scaling with no database instances to manage
+      - Multi-region active-active replication for global distribution
+      - Built-in high availability with automatic failover
+      - Pay-per-use pricing based on I/O and storage
+      - Standard PostgreSQL client compatibility
+      - Transactional consistency across distributed nodes
+      - Integrated with AWS IAM for authentication
+      - Automatic software patching and maintenance
+      - Point-in-time recovery with continuous backups
+  - type: UseCases
+    data:
+      - Build globally distributed transactional applications
+      - Run PostgreSQL workloads without managing instances
+      - Deploy active-active multi-region database architectures
+      - Migrate PostgreSQL applications to serverless infrastructure
+      - Build applications requiring strong consistency at global scale
+      - Implement high-throughput transactional microservices
+  - type: Integrations
+    data:
+      - Amazon VPC
+      - AWS IAM
+      - Amazon CloudWatch
+      - AWS CloudTrail
+      - Amazon RDS
+      - AWS KMS
+      - Amazon Route 53
+      - AWS PrivateLink
+      - Amazon S3
+      - AWS Secrets Manager
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

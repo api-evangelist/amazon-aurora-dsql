@@ -1,0 +1,611 @@
+openapi: 3.1.0
+info:
+  title: Amazon Aurora DSQL API
+  description: >-
+    Amazon Aurora DSQL is a distributed SQL database service optimized for transactional workloads. It provides a serverless, fully managed PostgreSQL-compatible database with built-in high availability, scalability, and global distribution capabilities.
+  version: '2018-03-01'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://dsql.us-east-1.amazonaws.com
+    description: Amazon Aurora DSQL API endpoint
+security:
+  - sigv4: []
+tags:
+  - name: Clusters
+    description: Operations for creating and managing Aurora DSQL clusters
+  - name: Multi-Region Clusters
+    description: Operations for managing multi-region cluster configurations
+paths:
+  /cluster:
+    post:
+      operationId: createCluster
+      summary: Amazon Aurora DSQL Create Cluster
+      description: Creates a new Aurora DSQL cluster. A cluster is the foundation for all Aurora DSQL data and operations.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClusterInput'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  deletionProtectionEnabled: true
+                  tags:
+                    Environment: "Production"
+                    Team: "Data"
+      responses:
+        '200':
+          description: Cluster created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateClusterOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    identifier: "myCluster1"
+                    arn: "arn:aws:dsql:us-east-1:123456789012:cluster/myCluster1"
+                    status: "CREATING"
+                    creationTime: "2024-01-15T10:30:00Z"
+                    deletionProtectionEnabled: true
+  /cluster/{identifier}:
+    get:
+      operationId: getCluster
+      summary: Amazon Aurora DSQL Get Cluster
+      description: Retrieves the properties of a cluster.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cluster retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClusterOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    identifier: "myCluster1"
+                    arn: "arn:aws:dsql:us-east-1:123456789012:cluster/myCluster1"
+                    status: "ACTIVE"
+                    creationTime: "2024-01-15T10:30:00Z"
+                    deletionProtectionEnabled: true
+    put:
+      operationId: updateCluster
+      summary: Amazon Aurora DSQL Update Cluster
+      description: Updates a cluster with the specified properties.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClusterInput'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  deletionProtectionEnabled: false
+      responses:
+        '200':
+          description: Cluster updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateClusterOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    identifier: "myCluster1"
+                    arn: "arn:aws:dsql:us-east-1:123456789012:cluster/myCluster1"
+                    status: "UPDATING"
+                    deletionProtectionEnabled: false
+    delete:
+      operationId: deleteCluster
+      summary: Amazon Aurora DSQL Delete Cluster
+      description: Deletes a cluster in Aurora DSQL. You can't use your cluster after it is deleted.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cluster deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteClusterOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    identifier: "myCluster1"
+                    arn: "arn:aws:dsql:us-east-1:123456789012:cluster/myCluster1"
+                    status: "DELETING"
+  /cluster/{identifier}/endpoint:
+    get:
+      operationId: getClusterEndpoint
+      summary: Amazon Aurora DSQL Get Cluster Endpoint
+      description: Gets the database endpoint properties of a cluster.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cluster endpoint retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClusterEndpointOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    identifier: "myCluster1"
+                    endpoint: "myCluster1.dsql.us-east-1.on.aws"
+                    port: 5432
+  /clusters:
+    get:
+      operationId: listClusters
+      summary: Amazon Aurora DSQL List Clusters
+      description: Retrieves a list of clusters.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Clusters listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClustersOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    clusters:
+                      - identifier: "myCluster1"
+                        arn: "arn:aws:dsql:us-east-1:123456789012:cluster/myCluster1"
+                        status: "ACTIVE"
+                    nextToken: ""
+  /multi-region-clusters:
+    post:
+      operationId: createMultiRegionClusters
+      summary: Amazon Aurora DSQL Create Multi Region Clusters
+      description: Creates multi-Region clusters in Amazon Aurora DSQL. Multi-Region clusters require a linked Region list, which is an array of the Regions in which you want to create linked clusters.
+      tags:
+        - Multi-Region Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMultiRegionClustersInput'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  linkedRegionList:
+                    - "us-east-1"
+                    - "us-west-2"
+                  clusterProperties:
+                    deletionProtectionEnabled: true
+                  witnessRegion: "eu-west-1"
+      responses:
+        '200':
+          description: Multi-region clusters created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMultiRegionClustersOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    linkedClusterArns:
+                      - "arn:aws:dsql:us-east-1:123456789012:cluster/cluster1"
+                      - "arn:aws:dsql:us-west-2:123456789012:cluster/cluster2"
+    delete:
+      operationId: deleteMultiRegionClusters
+      summary: Amazon Aurora DSQL Delete Multi Region Clusters
+      description: Deletes a multi-Region cluster in Amazon Aurora DSQL.
+      tags:
+        - Multi-Region Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteMultiRegionClustersInput'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  linkedClusterArns:
+                    - "arn:aws:dsql:us-east-1:123456789012:cluster/cluster1"
+                    - "arn:aws:dsql:us-west-2:123456789012:cluster/cluster2"
+      responses:
+        '200':
+          description: Multi-region clusters deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMultiRegionClustersOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: Amazon Aurora DSQL List Tags For Resource
+      description: Lists all of the tags for a resource.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTagsForResourceOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      Environment: "Production"
+                      Team: "Data"
+    post:
+      operationId: tagResource
+      summary: Amazon Aurora DSQL Tag Resource
+      description: Tags a resource with a map of key and value pairs.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagResourceInput'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  tags:
+                    Environment: "Production"
+                    Team: "Data"
+      responses:
+        '200':
+          description: Resource tagged successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResourceOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+    delete:
+      operationId: untagResource
+      summary: Amazon Aurora DSQL Untag Resource
+      description: Removes a tag from a resource.
+      tags:
+        - Clusters
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tagKeys
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Tags removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UntagResourceOutput'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+components:
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4
+  schemas:
+    ClusterStatus:
+      type: string
+      enum:
+        - CREATING
+        - ACTIVE
+        - IDLE
+        - UPDATING
+        - DELETING
+        - DELETED
+        - FAILED
+    ClusterSummary:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The ID of the cluster
+        arn:
+          type: string
+          description: The ARN of the cluster
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+    CreateClusterInput:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: A map of key and value pairs to use to tag your cluster
+        clientToken:
+          type: string
+          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
+    CreateClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    GetClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+        witnessRegion:
+          type: string
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+    UpdateClusterInput:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+        clientToken:
+          type: string
+    UpdateClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        deletionProtectionEnabled:
+          type: boolean
+        creationTime:
+          type: string
+          format: date-time
+        witnessRegion:
+          type: string
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+    DeleteClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    GetClusterEndpointOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        endpoint:
+          type: string
+          description: The DNS hostname of the cluster
+        port:
+          type: integer
+          description: The database port number
+    ListClustersOutput:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterSummary'
+        nextToken:
+          type: string
+    CreateMultiRegionClustersInput:
+      type: object
+      required:
+        - linkedRegionList
+      properties:
+        linkedRegionList:
+          type: array
+          items:
+            type: string
+          description: An array of the Regions in which you want to create linked clusters
+        clusterProperties:
+          $ref: '#/components/schemas/LinkedClusterProperties'
+        witnessRegion:
+          type: string
+          description: The witness Region of multi-Region clusters
+        clientToken:
+          type: string
+    LinkedClusterProperties:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateMultiRegionClustersOutput:
+      type: object
+      properties:
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+          description: An array of the ARNs of the clusters that were created
+    DeleteMultiRegionClustersInput:
+      type: object
+      required:
+        - linkedClusterArns
+      properties:
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+          description: The ARNs of the clusters linked to the cluster you want to delete
+        clientToken:
+          type: string
+    DeleteMultiRegionClustersOutput:
+      type: object
+    ListTagsForResourceOutput:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    TagResourceInput:
+      type: object
+      required:
+        - tags
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    TagResourceOutput:
+      type: object
+    UntagResourceOutput:
+      type: object
