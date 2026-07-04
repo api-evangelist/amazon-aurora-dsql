@@ -1,0 +1,18 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/release-notes.html
+versioning:
+  scheme: api-version-date
+  current: '2018-03-01'
+  note: AWS service API version identifier from the OpenAPI info.version.
+  docs: https://docs.aws.amazon.com/aurora-dsql/latest/APIReference/Welcome.html
+deprecation:
+  policy_url: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/doc-history.html
+  sunset_header: false
+  note: AWS communicates API/service changes via Document history and Release notes, not RFC 8594 Sunset/Deprecation headers.
+release_notes: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/release-notes.html
+sla:
+  url: https://aws.amazon.com/rds/aurora/dsql/sla/
+  note: Covered by the AWS service-level agreement program; verify current terms on the AWS SLA page.
+status_page: https://health.aws.amazon.com/health/status
+deprecated_operations: []

@@ -1,0 +1,30 @@
+generated: '2026-06-20'
+method: searched
+notes: >-
+  The Aurora DSQL API host (dsql.us-east-1.amazonaws.com) is a SigV4-only AWS
+  service endpoint and does not respond to unauthenticated /.well-known/ GETs
+  (no HTTP response returned). The provider-level security.txt is published at
+  the aws.amazon.com parent host and is captured verbatim below.
+hosts:
+  - host: https://dsql.us-east-1.amazonaws.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 0
+        note: no HTTP response (SigV4-only service endpoint)
+      - path: /.well-known/openid-configuration
+        status: 0
+        note: no HTTP response (SigV4-only service endpoint)
+      - path: /.well-known/oauth-authorization-server
+        status: 0
+        note: no HTTP response (SigV4-only service endpoint)
+      - path: /.well-known/api-catalog
+        status: 0
+        note: no HTTP response (SigV4-only service endpoint)
+      - path: /.well-known/ai-plugin.json
+        status: 0
+        note: no HTTP response (SigV4-only service endpoint)
+  - host: https://aws.amazon.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: amazon-aurora-dsql-security.txt

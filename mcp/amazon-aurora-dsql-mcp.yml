@@ -1,0 +1,30 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: https://awslabs.github.io/mcp/servers/aurora-dsql-mcp-server
+server:
+  name: awslabs.aurora-dsql-mcp-server
+  vendor: AWS Labs
+  transport: stdio
+  install: uvx awslabs.aurora-dsql-mcp-server@latest
+  package: https://pypi.org/project/awslabs.aurora-dsql-mcp-server/
+  repository: https://github.com/awslabs/mcp/tree/main/src/aurora-dsql-mcp-server
+  version: 1.0.33
+  official: true
+  notes: >-
+    Runs locally on the same host as the LLM client. Requires --cluster_endpoint,
+    --database_user, and --region. Read-only by default; pass --allow-writes to
+    enable write operations. Uses IAM (dsql:DbConnectAdmin / dsql:DbConnect).
+tools:
+  - name: readonly_query
+    description: Execute a read-only SQL query against the Aurora DSQL cluster.
+  - name: transact
+    description: Execute one or more SQL statements within a transaction.
+  - name: get_schema
+    description: Retrieve schema information for the connected Aurora DSQL database.
+  - name: dsql_search_documentation
+    description: Search the Aurora DSQL documentation.
+  - name: dsql_read_documentation
+    description: Read a specific Aurora DSQL documentation page.
+  - name: dsql_recommend
+    description: Return Aurora DSQL best-practice recommendations.

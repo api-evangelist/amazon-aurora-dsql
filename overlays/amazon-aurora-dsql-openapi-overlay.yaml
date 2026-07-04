@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Amazon Aurora DSQL API
+  version: 1.0.0
+extends: openapi/amazon-aurora-dsql-openapi.yml
+x-provenance:
+  generated: '2026-06-20'
+  method: generated
+  source: openapi/amazon-aurora-dsql-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 4
+      x-apievangelist-slug: amazon-aurora-dsql
+      x-authentication: AWS Signature Version 4 (SigV4) with IAM
+  - target: $.info
+    update:
+      x-idempotency:
+        supported: true
+        mechanism: clientToken request field
+        operations:
+          - createCluster
+          - updateCluster
+          - createMultiRegionClusters
+          - deleteMultiRegionClusters
+  - target: $.paths['/clusters'].get
+    update:
+      x-pagination:
+        style: token
+        request_params:
+          - maxResults
+          - nextToken
+        response_token: nextToken
+  - target: $.paths['/cluster'].post
+    update:
+      x-apievangelist-note: Cluster is the root resource; all DSQL data and operations depend on it.

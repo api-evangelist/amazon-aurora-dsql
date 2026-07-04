@@ -1,0 +1,73 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/aws-sdks.html
+packages:
+  - language: javascript
+    registry: npm
+    name: "@aws-sdk/client-dsql"
+    version: 3.1079.0
+    url: https://www.npmjs.com/package/@aws-sdk/client-dsql
+    install: npm install @aws-sdk/client-dsql
+    official: true
+    description: AWS SDK for JavaScript v3 client for Amazon Aurora DSQL control-plane operations.
+  - language: javascript
+    registry: npm
+    name: "@aws-sdk/dsql-signer"
+    version: 3.1079.0
+    url: https://www.npmjs.com/package/@aws-sdk/dsql-signer
+    install: npm install @aws-sdk/dsql-signer
+    official: true
+    description: Generates the IAM authentication tokens used to connect to an Aurora DSQL cluster.
+  - language: python
+    registry: pypi
+    name: boto3
+    url: https://docs.aws.amazon.com/boto3/latest/reference/services/dsql.html
+    install: pip install boto3
+    official: true
+    description: AWS SDK for Python; exposes the Aurora DSQL client via boto3.client("dsql").
+  - language: python
+    registry: pypi
+    name: aurora-dsql-django
+    version: 0.4.1
+    url: https://pypi.org/project/aurora-dsql-django/
+    install: pip install aurora-dsql-django
+    official: true
+    description: Official AWS Django database adapter for Aurora DSQL (awslabs/aurora-dsql-orms).
+  - language: python
+    registry: pypi
+    name: aurora-dsql-sqlalchemy
+    version: 1.1.3
+    url: https://pypi.org/project/aurora-dsql-sqlalchemy/
+    install: pip install aurora-dsql-sqlalchemy
+    official: true
+    description: Official AWS SQLAlchemy dialect for Aurora DSQL.
+  - language: python
+    registry: pypi
+    name: awslabs.aurora-dsql-mcp-server
+    version: 1.0.33
+    url: https://pypi.org/project/awslabs.aurora-dsql-mcp-server/
+    install: uvx awslabs.aurora-dsql-mcp-server@latest
+    official: true
+    description: AWS Labs Model Context Protocol (MCP) server for Aurora DSQL.
+  - language: java
+    registry: maven
+    name: software.amazon.awssdk:dsql
+    version: 2.46.7
+    url: https://central.sonatype.com/artifact/software.amazon.awssdk/dsql
+    install: "implementation 'software.amazon.awssdk:dsql'"
+    official: true
+    description: AWS SDK for Java 2.x module for Amazon Aurora DSQL.
+  - language: dotnet
+    registry: nuget
+    name: AWSSDK.DSQL
+    url: https://www.nuget.org/packages/AWSSDK.DSQL
+    install: dotnet add package AWSSDK.DSQL
+    official: true
+    description: AWS SDK for .NET client for Amazon Aurora DSQL.
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/aws/aws-sdk-go-v2/service/dsql
+    url: https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/dsql
+    install: go get github.com/aws/aws-sdk-go-v2/service/dsql
+    official: true
+    description: AWS SDK for Go v2 client for Amazon Aurora DSQL.

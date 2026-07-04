@@ -13,7 +13,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-04-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
   - aid: amazon-aurora-dsql:amazon-aurora-dsql-api
@@ -66,7 +66,34 @@ apis:
       - type: Example
         url: >-
           https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/examples/aurora-dsql-get-cluster-output-example.json
+      - type: Packages
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/packages/amazon-aurora-dsql-packages.yml
+      - type: MCPServer
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/mcp/amazon-aurora-dsql-mcp.yml
+      - type: LLMsTxt
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/llms/amazon-aurora-dsql-llms.txt
+      - type: Overlay
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/overlays/amazon-aurora-dsql-openapi-overlay.yaml
+      - type: Conformance
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/conformance/amazon-aurora-dsql-conformance.yml
+      - type: ErrorCatalog
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/errors/amazon-aurora-dsql-problem-types.yml
+      - type: Lifecycle
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/lifecycle/amazon-aurora-dsql-lifecycle.yml
 common:
+  - type: WellKnown
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/well-known/amazon-aurora-dsql-well-known.yml
+  - type: SecurityTxt
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/well-known/amazon-aurora-dsql-security.txt
   - type: Features
     data:
       - Serverless PostgreSQL-compatible distributed SQL database

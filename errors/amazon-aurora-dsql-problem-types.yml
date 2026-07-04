@@ -1,0 +1,70 @@
+generated: '2026-06-20'
+method: searched
+format: aws-json
+source: https://docs.aws.amazon.com/aurora-dsql/latest/APIReference/CommonErrors.html
+notes: >-
+  The Aurora DSQL OpenAPI in this repo documents only 200 responses, so no 4xx/5xx
+  problem types could be derived from it. The catalog below is the AWS common error
+  set for the Aurora DSQL API, fetched verbatim from the AWS API Reference. AWS uses
+  its own JSON error envelope (an __type/message body), not RFC 9457 problem+json.
+problems:
+  - status: 403
+    name: AccessDeniedException
+    title: You don't have permission to perform this action.
+    remediation: Verify that your IAM policy includes the required permissions.
+  - status: 403
+    name: ExpiredTokenException
+    title: The security token included in the request has expired.
+    remediation: Request a new security token and try again.
+  - status: 403
+    name: IncompleteSignature
+    title: The request signature doesn't conform to AWS standards.
+    remediation: Verify valid AWS credentials and a properly formatted request; update your SDK.
+  - status: 500
+    name: InternalFailure
+    title: The request can't be processed right now because of an internal server issue.
+    remediation: Try again later; if it persists, contact AWS Support.
+  - status: 400
+    name: MalformedHttpRequestException
+    title: The request body can't be processed.
+    remediation: Verify the content-encoding header matches the compression used.
+  - status: 401
+    name: NotAuthorized
+    title: You don't have permissions to perform this action.
+    remediation: Verify that your IAM policy includes the required permissions.
+  - status: 403
+    name: OptInRequired
+    title: Your AWS account needs a subscription for this service.
+    remediation: Enable the service in your account.
+  - status: 400
+    name: RequestAbortedException
+    title: The request was aborted before a response could be returned.
+    remediation: Typically caused by the client closing the connection; retry.
+  - status: 413
+    name: RequestEntityTooLargeException
+    title: The request entity is too large.
+    remediation: Reduce the size of the request body and try again.
+  - status: 408
+    name: RequestTimeoutException
+    title: The request timed out.
+    remediation: Try again.
+  - status: 503
+    name: ServiceUnavailable
+    title: The service is temporarily unavailable.
+    remediation: Try again later.
+  - status: 400
+    name: ThrottlingException
+    title: Your request rate is too high.
+    remediation: Reduce request frequency; AWS SDKs retry this automatically.
+  - status: 404
+    name: UnknownOperationException
+    title: The action or operation isn't recognized.
+    remediation: Verify the action name and the API version you're using.
+  - status: 403
+    name: UnrecognizedClientException
+    title: The X.509 certificate or AWS access key ID provided doesn't exist in our records.
+    remediation: Verify credentials are valid and not expired.
+  - status: 400
+    name: ValidationError
+    title: The input doesn't meet the required format or constraints.
+    remediation: Check that all required parameters are included and valid.
