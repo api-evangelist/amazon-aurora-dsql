@@ -88,6 +88,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/lifecycle/amazon-aurora-dsql-lifecycle.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-aurora-dsql-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/amazon-aurora-dsql-vulnerability-disclosure.yml
   - type: DomainSecurity
