@@ -1,0 +1,16 @@
+{
+  "provider": "amazon-aurora-dsql",
+  "sources": [
+    "amazon-aurora-dsql-clusters-api-openapi.yml",
+    "amazon-aurora-dsql-multi-region-clusters-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-aurora-dsql-clusters-api-openapi.yml",
+    "amazon-aurora-dsql-multi-region-clusters-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
