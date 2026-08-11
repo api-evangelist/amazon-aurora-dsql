@@ -145,6 +145,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/lifecycle/amazon-aurora-dsql-lifecycle.yml
 common:
+  - type: MCPServer
+    url: mcp/amazon-aurora-dsql-mcp.yml
+  - type: Overlay
+    url: overlays/amazon-aurora-dsql-openapi-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/amazon-aurora-dsql-agentic-access.yml
   - type: VulnerabilityDisclosure
