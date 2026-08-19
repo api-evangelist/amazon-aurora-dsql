@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Aurora DSQL Clusters API",
+    "version": "2018-03-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dsql.us-east-1.amazonaws.com/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Aurora DSQL cluster. A cluster is the foundation for all Aurora DSQL data and operations."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dsql.us-east-1.amazonaws.com/cluster/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the properties of a cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dsql.us-east-1.amazonaws.com/cluster/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a cluster with the specified properties."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dsql.us-east-1.amazonaws.com/cluster/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a cluster in Aurora DSQL. You can't use your cluster after it is deleted."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Get Cluster Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dsql.us-east-1.amazonaws.com/cluster/:identifier/endpoint",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the database endpoint properties of a cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dsql.us-east-1.amazonaws.com/clusters",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of clusters."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL List Tags For Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dsql.us-east-1.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists all of the tags for a resource."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Tag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dsql.us-east-1.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tags a resource with a map of key and value pairs."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Untag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dsql.us-east-1.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Removes a tag from a resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

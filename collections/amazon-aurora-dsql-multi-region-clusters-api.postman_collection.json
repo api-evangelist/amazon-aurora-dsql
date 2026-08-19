@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "6b39f66a-4669-484e-a2d4-26a898878de8",
+      "name": "Multi-Region Clusters",
+      "description": {
+        "content": "Operations for managing multi-region cluster configurations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "065c6c9c-e886-4064-a739-5b7108295f40",
+          "name": "Amazon Aurora DSQL Create Multi Region Clusters",
+          "request": {
+            "name": "Amazon Aurora DSQL Create Multi Region Clusters",
+            "description": {
+              "content": "Creates multi-Region clusters in Amazon Aurora DSQL. Multi-Region clusters require a linked Region list, which is an array of the Regions in which you want to create linked clusters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "multi-region-clusters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"linkedRegionList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clusterProperties\": {\n    \"deletionProtectionEnabled\": \"<boolean>\",\n    \"tags\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    }\n  },\n  \"witnessRegion\": \"<string>\",\n  \"clientToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9e8223d-9e9a-4d83-a4c7-95c0fbffde5b",
+              "name": "Multi-region clusters created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "multi-region-clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"linkedRegionList\": [\n    \"us-east-1\",\n    \"us-west-2\"\n  ],\n  \"clusterProperties\": {\n    \"deletionProtectionEnabled\": true\n  },\n  \"witnessRegion\": \"eu-west-1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"linkedClusterArns\": [\n    \"arn:aws:dsql:us-east-1:123456789012:cluster/cluster1\",\n    \"arn:aws:dsql:us-west-2:123456789012:cluster/cluster2\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "450e45ec-933b-42ee-bf70-a9aa19b84599",
+          "name": "Amazon Aurora DSQL Delete Multi Region Clusters",
+          "request": {
+            "name": "Amazon Aurora DSQL Delete Multi Region Clusters",
+            "description": {
+              "content": "Deletes a multi-Region cluster in Amazon Aurora DSQL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "multi-region-clusters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"linkedClusterArns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4c84a3a-3f7b-43fd-9ce2-460df0117e3f",
+              "name": "Multi-region clusters deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "multi-region-clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"linkedClusterArns\": [\n    \"arn:aws:dsql:us-east-1:123456789012:cluster/cluster1\",\n    \"arn:aws:dsql:us-west-2:123456789012:cluster/cluster2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dsql.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5eca8507-31ab-4e1d-befe-ed240f2f28d6",
+    "name": "Amazon Aurora DSQL Clusters Multi-Region Clusters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon Aurora DSQL is a distributed SQL database service optimized for transactional workloads. It provides a serverless, fully managed PostgreSQL-compatible database with built-in high availability, scalability, and global distribution capabilities.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

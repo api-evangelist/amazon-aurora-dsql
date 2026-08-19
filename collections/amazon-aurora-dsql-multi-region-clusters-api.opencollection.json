@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Aurora DSQL Clusters Multi-Region Clusters API",
+    "version": "2018-03-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multi-Region Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Create Multi Region Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dsql.us-east-1.amazonaws.com/multi-region-clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multi-Region clusters in Amazon Aurora DSQL. Multi-Region clusters require a linked Region list, which is an array of the Regions in which you want to create linked clusters."
+        },
+        {
+          "info": {
+            "name": "Amazon Aurora DSQL Delete Multi Region Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dsql.us-east-1.amazonaws.com/multi-region-clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a multi-Region cluster in Amazon Aurora DSQL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
