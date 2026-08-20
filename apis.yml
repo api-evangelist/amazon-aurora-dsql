@@ -35,6 +35,8 @@ apis:
     humanURL: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/getting-started.html
     baseURL: https://dsql.us-east-1.amazonaws.com
     tags:
+      - Cluster
+    tags_raw:
       - Clusters
     properties:
       - type: OpenAPI
