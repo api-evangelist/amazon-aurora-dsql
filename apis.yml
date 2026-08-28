@@ -5,6 +5,17 @@ description: >-
   serverless, fully managed PostgreSQL-compatible database with built-in high availability, scalability, and global
   distribution capabilities.
 type: Index
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
