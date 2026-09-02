@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon Aurora DSQL Clusters API
   description: Amazon Aurora DSQL is a distributed SQL database service optimized for transactional workloads. It provides a serverless, fully managed PostgreSQL-compatible database with built-in high availability, scalability, and global distribution capabilities.
@@ -329,51 +329,6 @@ paths:
                   value: {}
 components:
   schemas:
-    ClusterSummary:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: The ID of the cluster
-        arn:
-          type: string
-          description: The ARN of the cluster
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
-    GetClusterEndpointOutput:
-      type: object
-      properties:
-        identifier:
-          type: string
-        endpoint:
-          type: string
-          description: The DNS hostname of the cluster
-        port:
-          type: integer
-          description: The database port number
-    ListClustersOutput:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterSummary'
-        nextToken:
-          type: string
-    DeleteClusterOutput:
-      type: object
-      properties:
-        identifier:
-          type: string
-        arn:
-          type: string
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
-        creationTime:
-          type: string
-          format: date-time
-        deletionProtectionEnabled:
-          type: boolean
     GetClusterOutput:
       type: object
       properties:
@@ -394,8 +349,6 @@ components:
           type: array
           items:
             type: string
-    UntagResourceOutput:
-      type: object
     ClusterStatus:
       type: string
       enum:
@@ -406,45 +359,8 @@ components:
       - DELETING
       - DELETED
       - FAILED
-    CreateClusterInput:
-      type: object
-      properties:
-        deletionProtectionEnabled:
-          type: boolean
-          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: A map of key and value pairs to use to tag your cluster
-        clientToken:
-          type: string
-          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
-    CreateClusterOutput:
-      type: object
-      properties:
-        identifier:
-          type: string
-        arn:
-          type: string
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
-        creationTime:
-          type: string
-          format: date-time
-        deletionProtectionEnabled:
-          type: boolean
     TagResourceOutput:
       type: object
-    TagResourceInput:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     ListTagsForResourceOutput:
       type: object
       properties:
@@ -459,6 +375,70 @@ components:
           type: boolean
         clientToken:
           type: string
+    UntagResourceOutput:
+      type: object
+    TagResourceInput:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateClusterInput:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: A map of key and value pairs to use to tag your cluster
+        clientToken:
+          type: string
+          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
+    DeleteClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    CreateClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    ClusterSummary:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The ID of the cluster
+        arn:
+          type: string
+          description: The ARN of the cluster
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
     UpdateClusterOutput:
       type: object
       properties:
@@ -479,6 +459,26 @@ components:
           type: array
           items:
             type: string
+    ListClustersOutput:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterSummary'
+        nextToken:
+          type: string
+    GetClusterEndpointOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        endpoint:
+          type: string
+          description: The DNS hostname of the cluster
+        port:
+          type: integer
+          description: The database port number
   securitySchemes:
     sigv4:
       type: apiKey
