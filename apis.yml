@@ -120,7 +120,7 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/lifecycle/amazon-aurora-dsql-lifecycle.yml
 common:
 - type: Website
-  url: https://amazon.com
+  url: https://aws.amazon.com/rds/aurora/dsql/
 - type: MCPServer
   url: mcp/amazon-aurora-dsql-mcp.yml
 - type: Overlay
@@ -172,5 +172,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product

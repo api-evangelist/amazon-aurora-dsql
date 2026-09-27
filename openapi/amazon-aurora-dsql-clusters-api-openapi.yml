@@ -338,20 +338,17 @@ components:
           type: object
           additionalProperties:
             type: string
-    CreateClusterOutput:
+    ClusterSummary:
       type: object
       properties:
         identifier:
           type: string
+          description: The ID of the cluster
         arn:
           type: string
+          description: The ARN of the cluster
         status:
           $ref: '#/components/schemas/ClusterStatus'
-        creationTime:
-          type: string
-          format: date-time
-        deletionProtectionEnabled:
-          type: boolean
     GetClusterEndpointOutput:
       type: object
       properties:
@@ -363,8 +360,6 @@ components:
         port:
           type: integer
           description: The database port number
-    UntagResourceOutput:
-      type: object
     DeleteClusterOutput:
       type: object
       properties:
@@ -379,13 +374,20 @@ components:
           format: date-time
         deletionProtectionEnabled:
           type: boolean
-    UpdateClusterInput:
+    CreateClusterInput:
       type: object
       properties:
         deletionProtectionEnabled:
           type: boolean
+          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: A map of key and value pairs to use to tag your cluster
         clientToken:
           type: string
+          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
     UpdateClusterOutput:
       type: object
       properties:
@@ -406,6 +408,40 @@ components:
           type: array
           items:
             type: string
+    TagResourceOutput:
+      type: object
+    CreateClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    UpdateClusterInput:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+        clientToken:
+          type: string
+    UntagResourceOutput:
+      type: object
+    ListClustersOutput:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterSummary'
+        nextToken:
+          type: string
     GetClusterOutput:
       type: object
       properties:
@@ -426,13 +462,6 @@ components:
           type: array
           items:
             type: string
-    ListTagsForResourceOutput:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     ClusterStatus:
       type: string
       enum:
@@ -443,42 +472,13 @@ components:
       - DELETING
       - DELETED
       - FAILED
-    ClusterSummary:
+    ListTagsForResourceOutput:
       type: object
       properties:
-        identifier:
-          type: string
-          description: The ID of the cluster
-        arn:
-          type: string
-          description: The ARN of the cluster
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
-    TagResourceOutput:
-      type: object
-    ListClustersOutput:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterSummary'
-        nextToken:
-          type: string
-    CreateClusterInput:
-      type: object
-      properties:
-        deletionProtectionEnabled:
-          type: boolean
-          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
         tags:
           type: object
           additionalProperties:
             type: string
-          description: A map of key and value pairs to use to tag your cluster
-        clientToken:
-          type: string
-          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
   securitySchemes:
     sigv4:
       type: apiKey
