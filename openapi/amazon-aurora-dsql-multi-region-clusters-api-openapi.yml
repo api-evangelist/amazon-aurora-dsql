@@ -105,6 +105,14 @@ components:
           description: The ARNs of the clusters linked to the cluster you want to delete
         clientToken:
           type: string
+    CreateMultiRegionClustersOutput:
+      type: object
+      properties:
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+          description: An array of the ARNs of the clusters that were created
     LinkedClusterProperties:
       type: object
       properties:
@@ -114,6 +122,8 @@ components:
           type: object
           additionalProperties:
             type: string
+    DeleteMultiRegionClustersOutput:
+      type: object
     CreateMultiRegionClustersInput:
       type: object
       required:
@@ -131,16 +141,6 @@ components:
           description: The witness Region of multi-Region clusters
         clientToken:
           type: string
-    CreateMultiRegionClustersOutput:
-      type: object
-      properties:
-        linkedClusterArns:
-          type: array
-          items:
-            type: string
-          description: An array of the ARNs of the clusters that were created
-    DeleteMultiRegionClustersOutput:
-      type: object
   securitySchemes:
     sigv4:
       type: apiKey

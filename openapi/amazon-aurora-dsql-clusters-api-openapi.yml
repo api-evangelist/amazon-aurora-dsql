@@ -338,17 +338,15 @@ components:
           type: object
           additionalProperties:
             type: string
-    ClusterSummary:
+    UntagResourceOutput:
+      type: object
+    ListTagsForResourceOutput:
       type: object
       properties:
-        identifier:
-          type: string
-          description: The ID of the cluster
-        arn:
-          type: string
-          description: The ARN of the cluster
-        status:
-          $ref: '#/components/schemas/ClusterStatus'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
     GetClusterEndpointOutput:
       type: object
       properties:
@@ -360,7 +358,7 @@ components:
         port:
           type: integer
           description: The database port number
-    DeleteClusterOutput:
+    GetClusterOutput:
       type: object
       properties:
         identifier:
@@ -374,20 +372,12 @@ components:
           format: date-time
         deletionProtectionEnabled:
           type: boolean
-    CreateClusterInput:
-      type: object
-      properties:
-        deletionProtectionEnabled:
-          type: boolean
-          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: A map of key and value pairs to use to tag your cluster
-        clientToken:
+        witnessRegion:
           type: string
-          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
     UpdateClusterOutput:
       type: object
       properties:
@@ -410,6 +400,43 @@ components:
             type: string
     TagResourceOutput:
       type: object
+    DeleteClusterOutput:
+      type: object
+      properties:
+        identifier:
+          type: string
+        arn:
+          type: string
+        status:
+          $ref: '#/components/schemas/ClusterStatus'
+        creationTime:
+          type: string
+          format: date-time
+        deletionProtectionEnabled:
+          type: boolean
+    ListClustersOutput:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterSummary'
+        nextToken:
+          type: string
+    CreateClusterInput:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+          description: If enabled, you can't delete your cluster. You must first disable this property before you delete the cluster.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: A map of key and value pairs to use to tag your cluster
+        clientToken:
+          type: string
+          description: A unique, case-sensitive identifier that you provide to ensure the idempotency of the request
     CreateClusterOutput:
       type: object
       properties:
@@ -431,37 +458,17 @@ components:
           type: boolean
         clientToken:
           type: string
-    UntagResourceOutput:
-      type: object
-    ListClustersOutput:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterSummary'
-        nextToken:
-          type: string
-    GetClusterOutput:
+    ClusterSummary:
       type: object
       properties:
         identifier:
           type: string
+          description: The ID of the cluster
         arn:
           type: string
+          description: The ARN of the cluster
         status:
           $ref: '#/components/schemas/ClusterStatus'
-        creationTime:
-          type: string
-          format: date-time
-        deletionProtectionEnabled:
-          type: boolean
-        witnessRegion:
-          type: string
-        linkedClusterArns:
-          type: array
-          items:
-            type: string
     ClusterStatus:
       type: string
       enum:
@@ -472,13 +479,6 @@ components:
       - DELETING
       - DELETED
       - FAILED
-    ListTagsForResourceOutput:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
   securitySchemes:
     sigv4:
       type: apiKey
