@@ -1,0 +1,32 @@
+slug: amazon-aurora-dsql
+provider: Amazon Aurora DSQL
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Clusters
+  spec_file: amazon-aurora-dsql-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: POST /cluster createCluster ... GET /cluster/{identifier}/endpoint getClusterEndpoint
+  reason: Provisions and manages managed database clusters and their endpoints — cloud compute/storage
+    infrastructure management.
+- tag: Multi-Region Clusters
+  spec_file: amazon-aurora-dsql-multi-region-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /multi-region-clusters createMultiRegionClusters; schemas LinkedClusterProperties
+  reason: Creates and deletes linked multi-region database clusters — cloud database infrastructure provisioning.

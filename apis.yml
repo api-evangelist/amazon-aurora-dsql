@@ -119,6 +119,9 @@ apis:
   - type: Lifecycle
     url: https://raw.githubusercontent.com/api-evangelist/amazon-aurora-dsql/refs/heads/main/lifecycle/amazon-aurora-dsql-lifecycle.yml
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-aurora-dsql-capability-edges.yml
+  name: Amazon Aurora DSQL Business Capability Map
 - type: Website
   url: https://aws.amazon.com/rds/aurora/dsql/
 - type: MCPServer
