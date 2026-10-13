@@ -1,0 +1,21 @@
+edges:
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: postgres-wire
+  type: docs
+  degree: declared-subset
+  evidence: https://docs.aws.amazon.com/aurora-dsql/latest/userguide/what-is-aurora-dsql.html
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/amazon-aurora-dsql/blob/main/evidence/compatibility/amazon-aurora-dsql-postgres-wire-1.md
+  quote: microservice, serverless, and event-driven architectures. Aurora DSQL is PostgreSQL-compatible, so you
+  supported_operations: []
+  unsupported_operations: []
+  supported_share: 0.0
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched
