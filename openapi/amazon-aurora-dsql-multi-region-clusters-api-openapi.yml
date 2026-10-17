@@ -93,35 +93,6 @@ paths:
                   value: {}
 components:
   schemas:
-    DeleteMultiRegionClustersInput:
-      type: object
-      required:
-      - linkedClusterArns
-      properties:
-        linkedClusterArns:
-          type: array
-          items:
-            type: string
-          description: The ARNs of the clusters linked to the cluster you want to delete
-        clientToken:
-          type: string
-    LinkedClusterProperties:
-      type: object
-      properties:
-        deletionProtectionEnabled:
-          type: boolean
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    CreateMultiRegionClustersOutput:
-      type: object
-      properties:
-        linkedClusterArns:
-          type: array
-          items:
-            type: string
-          description: An array of the ARNs of the clusters that were created
     CreateMultiRegionClustersInput:
       type: object
       required:
@@ -139,8 +110,37 @@ components:
           description: The witness Region of multi-Region clusters
         clientToken:
           type: string
+    LinkedClusterProperties:
+      type: object
+      properties:
+        deletionProtectionEnabled:
+          type: boolean
+        tags:
+          type: object
+          additionalProperties:
+            type: string
     DeleteMultiRegionClustersOutput:
       type: object
+    DeleteMultiRegionClustersInput:
+      type: object
+      required:
+      - linkedClusterArns
+      properties:
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+          description: The ARNs of the clusters linked to the cluster you want to delete
+        clientToken:
+          type: string
+    CreateMultiRegionClustersOutput:
+      type: object
+      properties:
+        linkedClusterArns:
+          type: array
+          items:
+            type: string
+          description: An array of the ARNs of the clusters that were created
   securitySchemes:
     sigv4:
       type: apiKey
